@@ -21,6 +21,8 @@ jobs:
 
       - name: Building images if the remote version has changed
         run: |
+          CURRENT_VERSION_JSON=`curl -s https://plexamp.plex.tv/headless/version.json`
+          CURRENT_VERSION=`echo $CURRENT_VERSION_JSON | jq -r .latestVersion`
           echo "Triggering Docker Build"  
           echo "Building AMD64 image"  
           docker buildx build --platform linux/amd64 -t ghcr.io/multipixelone/plexamp:amd64 --load .
