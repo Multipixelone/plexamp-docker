@@ -7,7 +7,9 @@ RUN apt update -y && apt install -y -q \
         wget \
         libasound2 \
         bzip2 \
-        curl
+        curl \
+        pipewire \
+        alsa-utils
 
 ENV WORKDIR /home/root
 RUN mkdir -p $WORKDIR
