@@ -26,17 +26,17 @@ jobs:
           CURRENT_VERSION_JSON=`curl -s https://plexamp.plex.tv/headless/version.json`
           CURRENT_VERSION=`echo $CURRENT_VERSION_JSON | jq -r .latestVersion`
           docker buildx create --use
-          docker buildx build --platform linux/arm64 -t ghcr.io/${{github.actor}}/plexamp:arm64v8 --load .
+          docker buildx build --platform linux/arm64 -t ghcr.io/multipixelone/plexamp:arm64v8 --load .
           docker push ghcr.io/multipixelone/plexamp:arm64v8
-          docker buildx build --platform linux/arm64 -t ghcr.io/${{github.actor}}/plexamp:arm64v8-${CURRENT_VERSION} --load .
+          docker buildx build --platform linux/arm64 -t ghcr.io/multipixelone/plexamp:arm64v8-${CURRENT_VERSION} --load .
           docker push ghcr.io/multipixelone/plexamp:arm64v8-${CURRENT_VERSION}
           echo "Building ARM32v7 image"  
-          docker buildx build --platform linux/arm/v7 -t ghcr.io/${{github.actor}}/plexamp:arm32v7 --load .
+          docker buildx build --platform linux/arm/v7 -t ghcr.io/multipixelone/plexamp:arm32v7 --load .
           docker push ghcr.io/multipixelone/plexamp:arm32v7
-          docker buildx build --platform linux/arm/v7 -t ghcr.io/${{github.actor}}/plexamp:arm32v7-${CURRENT_VERSION} --load .
+          docker buildx build --platform linux/arm/v7 -t ghcr.io/multipixelone/plexamp:arm32v7-${CURRENT_VERSION} --load .
           docker push ghcr.io/multipixelone/plexamp:arm32v7-${CURRENT_VERSION}
           echo "Building AMD64 image"  
-          docker buildx build --platform linux/amd64 -t ghcr.io/${{github.actor}}/plexamp:amd64 --load .
+          docker buildx build --platform linux/amd64 -t ghcr.io/multipixelone/plexamp:amd64 --load .
           docker push ghcr.io/multipixelone/plexamp:amd64
-          docker buildx build --platform linux/amd64 -t ghcr.io/${{github.actor}}/plexamp:amd64-${CURRENT_VERSION} --load .
+          docker buildx build --platform linux/amd64 -t ghcr.io/multipixelone/plexamp:amd64-${CURRENT_VERSION} --load .
           docker push ghcr.io/multipixelone/plexamp:amd64-${CURRENT_VERSION}
