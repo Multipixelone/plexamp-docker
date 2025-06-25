@@ -22,19 +22,6 @@ jobs:
       - name: Building images if the remote version has changed
         run: |
           echo "Triggering Docker Build"  
-          echo "Building ARM64v8 image"  
-          CURRENT_VERSION_JSON=`curl -s https://plexamp.plex.tv/headless/version.json`
-          CURRENT_VERSION=`echo $CURRENT_VERSION_JSON | jq -r .latestVersion`
-          docker buildx create --use
-          docker buildx build --platform linux/arm64 -t ghcr.io/multipixelone/plexamp:arm64v8 --load .
-          docker push ghcr.io/multipixelone/plexamp:arm64v8
-          docker buildx build --platform linux/arm64 -t ghcr.io/multipixelone/plexamp:arm64v8-${CURRENT_VERSION} --load .
-          docker push ghcr.io/multipixelone/plexamp:arm64v8-${CURRENT_VERSION}
-          echo "Building ARM32v7 image"  
-          docker buildx build --platform linux/arm/v7 -t ghcr.io/multipixelone/plexamp:arm32v7 --load .
-          docker push ghcr.io/multipixelone/plexamp:arm32v7
-          docker buildx build --platform linux/arm/v7 -t ghcr.io/multipixelone/plexamp:arm32v7-${CURRENT_VERSION} --load .
-          docker push ghcr.io/multipixelone/plexamp:arm32v7-${CURRENT_VERSION}
           echo "Building AMD64 image"  
           docker buildx build --platform linux/amd64 -t ghcr.io/multipixelone/plexamp:amd64 --load .
           docker push ghcr.io/multipixelone/plexamp:amd64
