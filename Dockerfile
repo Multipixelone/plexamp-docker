@@ -1,4 +1,4 @@
-FROM node:20-bullseye-slim
+FROM node:20-bookworm
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -8,7 +8,7 @@ RUN apt update -y && apt install -y -q \
         libasound2 \
         bzip2 \
         curl \
-        pipewire \
+        pipewire-audio \
         alsa-utils
 
 ENV WORKDIR /home/root
